@@ -6,6 +6,7 @@ import type { RootState } from "./store";
 import { clearUser } from "./features/auth/authSlice";
 import styles from "./App.module.css";
 import PostPage from "./pages/PostPage";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -21,13 +22,26 @@ const App = () => {
         <div className={styles.navLinks}>
           <Link to="/">Best Application</Link>
         </div>
-        <div>{user ? <button onClick={handleLogout}>Log Out</button> : <Link to="/login">Sign In</Link>}</div>
+        <div>
+          {user ? (
+            <button onClick={handleLogout}>Log Out</button>
+          ) : (
+            <Link to="/login">Sign In</Link>
+          )}
+        </div>
       </nav>
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/posts/:id" element={<PostPage />} />
+          <Route
+            path="/posts/:id"
+            element={
+              <PrivateRoute>
+                <PostPage />
+              </PrivateRoute>
+            }
+          />{" "}
         </Routes>
       </main>
     </BrowserRouter>

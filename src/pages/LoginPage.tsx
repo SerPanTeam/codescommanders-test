@@ -49,7 +49,7 @@ export const LoginPage = () => {
         <h2>Sign In</h2>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Username: Bret"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className={styles.input}

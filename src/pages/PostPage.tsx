@@ -16,6 +16,11 @@ const PostPage = () => {
 
   return (
     <div className={styles.container}>
+      <img
+        src={`https://picsum.photos/seed/${post.id}/800/300`}
+        alt="Post image"
+        className={styles.image}
+      />
       <h1 className={styles.title}>{post.title}</h1>
       <p className={styles.body}>{post.body}</p>
 

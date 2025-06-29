@@ -20,7 +20,12 @@ function HomePage() {
         {data?.map((post) => (
           // <div className={styles.card} key={post.id}>
           <Link to={`/posts/${post.id}`} key={post.id} className={styles.card}>
-            <div className={styles.imagePlaceholder}></div>
+            <img
+              src={`https://picsum.photos/seed/${post.id}/300/200`}
+              alt="Post preview"
+              className={styles.image}
+            />
+            {/* <div className={styles.imagePlaceholder}></div> */}
             <div className={styles.cardContent}>
               <h3 className={styles.title}>{post.title}</h3>
               <p className={styles.body}>{post.body.slice(0, 60) + " ..."}</p>

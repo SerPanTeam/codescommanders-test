@@ -1,0 +1,53 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.body {
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+.comments {
+  margin-top: 40px;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.commentName {
+  font-weight: bold;
+  margin: 0;
+}
+
+.commentEmail {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.commentBody {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 40px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}

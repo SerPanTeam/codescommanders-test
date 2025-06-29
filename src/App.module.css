@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+.navLinks {
+  display: flex;
+  gap: 12px;
+}
+
+.main {
+  padding: 40px;
+}

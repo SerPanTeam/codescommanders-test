@@ -57,3 +57,8 @@ docker build -t codescommanders-test .
 docker run -p 3000:3000 codescommanders-test
 http://localhost:3000
 ```
+
+## Демо
+
+Развернутое приложение:
+[codescommanders.panchenko.work](https://codescommanders.panchenko.work/)

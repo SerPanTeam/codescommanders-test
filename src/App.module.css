@@ -15,3 +15,10 @@
 .main {
   padding: 40px;
 }
+
+.langBar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 40px;
+  background: #f0f0f0;
+}

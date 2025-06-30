@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useGetPostsQuery } from "../features/api/postsApi";
 import { useGetCommentsByPostIdQuery } from "../features/api/commentsApi";
 import styles from "./PostPage.module.css";
+import { useTranslation } from "react-i18next";
 
 const PostPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,8 +12,9 @@ const PostPage = () => {
   const { data: comments, isLoading } = useGetCommentsByPostIdQuery(postId);
 
   const post = posts?.find((p) => p.id === postId);
+  const { t } = useTranslation();
 
-  if (!post) return <p>Пост не найден</p>;
+  if (!post) return <p>{t("post.notFound")}</p>;
 
   return (
     <div className={styles.container}>
@@ -24,9 +26,9 @@ const PostPage = () => {
       <h1 className={styles.title}>{post.title}</h1>
       <p className={styles.body}>{post.body}</p>
 
-      <h2>Комментарии</h2>
+      <h2>{t("post.comments")}</h2>
       <div className={styles.comments}>
-        {isLoading && <p>Загрузка комментариев...</p>}
+        {isLoading && <p>{t("post.loadingComments")}</p>}
         {comments?.map((comment) => (
           <div key={comment.id} className={styles.comment}>
             <p className={styles.commentName}>{comment.name}</p>
@@ -37,7 +39,7 @@ const PostPage = () => {
       </div>
 
       <Link to="/" className={styles.backLink}>
-        Назад
+        {t("post.back")}
       </Link>
     </div>
   );

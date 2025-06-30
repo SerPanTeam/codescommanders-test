@@ -6,6 +6,7 @@ import { setUser } from "../features/auth/authSlice";
 import { Toast } from "../components/Toast";
 import styles from "./LoginPage.module.css";
 import type { AppDispatch } from "../store";
+import { useTranslation } from "react-i18next";
 
 export const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -14,11 +15,12 @@ export const LoginPage = () => {
 
   const navigate = useNavigate();
   const [trigger, { data, isLoading, error }] = useLazyGetUserByUsernameQuery();
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username.trim() === "") {
-      setShowToast("Введите имя пользователя");
+      setShowToast(t("login.enterUsername"));
       return;
     }
     trigger(username);
@@ -29,9 +31,9 @@ export const LoginPage = () => {
       dispatch(setUser(data[0]));
       navigate("/");
     } else if (data && data.length === 0) {
-      setShowToast("Пользователь не найден!");
+      setShowToast(t("login.userNotFound"));
     }
-  }, [data, navigate, dispatch]);
+  }, [data, navigate, dispatch, t]);
 
   useEffect(() => {
     if (showToast) {
@@ -40,22 +42,27 @@ export const LoginPage = () => {
     }
   }, [showToast]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error occurred</p>;
+  if (isLoading) return <p>{t("global.loading")}</p>;
+  if (error) return <p>{t("global.error")}</p>;
 
   return (
     <div className={styles.loginContainer}>
       <form onSubmit={handleSubmit} className={styles.loginBox}>
-        <h2>Sign In</h2>
+        <h2>{t("login.signIn")}</h2>
+
         <input
           type="text"
-          placeholder="Username: Bret"
+          placeholder={t("login.usernamePlaceholder") + " (Bret)"}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className={styles.input}
         />
-        <button disabled={username.trim() === ""} type="submit" className={styles.button}>
-          Send
+        <button
+          disabled={username.trim() === ""}
+          type="submit"
+          className={styles.button}
+        >
+          {t("login.send")}
         </button>
       </form>
       <Toast message={showToast} />

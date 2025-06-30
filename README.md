@@ -6,10 +6,13 @@
 
 Приложение разработано на:
 
-- React 19 с TypeScript
-- Redux Toolkit
-- React Router Dom
+- Vite + React 19
+- TypeScript
+- Redux Toolkit + RTK Query
+- React Router DOM
+- react-i18next
 - CSS Modules
+- Docker
 
 ## Функционал
 
@@ -18,6 +21,8 @@
 - Сохранение состояния пользователя в глобальном хранилище
 - Возможность входа и выхода (Sign In / Log Out)
 - Уведомления об ошибках через `Toast`
+- Переключение языка
+- Страница поста с комментариями, доступна только авторизованным пользователям
 
 ## Структура проекта
 

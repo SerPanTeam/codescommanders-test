@@ -3,12 +3,13 @@ import HomePage from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store";
-import { clearUser } from "./features/auth/authSlice";
+import { clearUser, setUser } from "./features/auth/authSlice";
 import styles from "./App.module.css";
 import PostPage from "./pages/PostPage";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
+import { useEffect } from "react";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -16,7 +17,15 @@ const App = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
+    localStorage.removeItem("user");
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
 
   const { t } = useTranslation();
 

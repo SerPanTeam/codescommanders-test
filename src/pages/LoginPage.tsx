@@ -29,6 +29,7 @@ export const LoginPage = () => {
   useEffect(() => {
     if (data && data.length > 0) {
       dispatch(setUser(data[0]));
+      localStorage.setItem("user", JSON.stringify(data[0]));
       navigate("/");
     } else if (data && data.length === 0) {
       setShowToast(t("login.userNotFound"));
@@ -57,11 +58,7 @@ export const LoginPage = () => {
           onChange={(e) => setUsername(e.target.value)}
           className={styles.input}
         />
-        <button
-          disabled={username.trim() === ""}
-          type="submit"
-          className={styles.button}
-        >
+        <button disabled={username.trim() === ""} type="submit" className={styles.button}>
           {t("login.send")}
         </button>
       </form>
